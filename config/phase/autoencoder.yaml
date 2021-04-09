@@ -1,0 +1,15 @@
+# @package _global_
+data:
+  limit: # blank to use all data
+  ratio: 0.9
+param:
+  batch_size: 512
+  epochs: 10
+  lr: 0.001
+  gamma: 0.7
+  seed: 1
+log:
+  interval: 10
+  save_model: true
+gpus: # -1 to cpu
+  - 0

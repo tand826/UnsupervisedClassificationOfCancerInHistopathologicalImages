@@ -1,0 +1,33 @@
+now: ${now:%Y%m%d_%H%M%S}
+dir:
+  wsi: "" # must be absolute
+  patch: "" # must be absolute
+  result: "" # must be absolute
+  suffix: "" # memo
+  resume: false # set directory path
+  save_to: ${dir.result}/${now}${dir.suffix}
+data:
+  chunks: 100 # separate dataset into chunks for resuming
+  projects:
+    - TCGA-COAD
+    - TCGA-LUAD
+    - TCGA-LUSC
+    - TCGA-READ
+  strategies:
+    - diagnostic_slides
+    # - tissue_slides
+patch:
+  size: 224
+
+dry_run: false # small integer to run for testing with small parts of the dataset
+
+hydra:
+  output_subdir: hydra
+  run:
+    dir: ${dir.save_to}
+  job_logging:
+    root:
+      level: ERROR
+
+defaults:
+  - phase: false

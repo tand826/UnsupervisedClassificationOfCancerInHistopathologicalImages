@@ -1,0 +1,18 @@
+# @package _global_
+dir:
+  saved_to: "" # set save_to directory to contain the trial
+  weight: "" # set to specify the path file to load
+param:
+  batch_size: 512 # reduce if the GPU runs out of memory
+  ncentroids: 100 # number of clusters
+  niter: 20
+  img_per_grid: 25
+  nrow: 5
+  wsis:
+    # -  "aaa" # must be absolute. set blank or false to run with all wsis.
+save:
+  grid: true
+  ASAP: true
+gpus: # -1 to cpu
+  autoencoder: 0
+  kmeans: 0
