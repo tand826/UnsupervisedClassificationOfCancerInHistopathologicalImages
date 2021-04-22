@@ -7,22 +7,22 @@ import hydra
 
 
 def download_wsi(cfg):
-    cwd = hydra.utils.get_original_cwd()
+    cwd = Path(hydra.utils.get_original_cwd())
     wsi_dir = Path(cfg.dir.wsi)
     if not wsi_dir.exists():
         wsi_dir.mkdir(parents=True)
     for project in cfg.data.projects:
         for strategy in cfg.data.strategies:
-            save_to = wsi_dir/project
+            save_to = cwd/wsi_dir/project
             if not save_to.exists():
                 save_to.mkdir()
             manifest = f"{project}_{strategy}.txt"
-            subprocess.run([
-                "gdc-client",
+            proc = subprocess.run([
+                "./gdc-client",
                 "download",
-                "-m", f"{cwd}/tcga_manifests/{manifest}",
+                "-m", cwd/"tcga_manifests"/manifest,
                 "-d", str(save_to)
-            ])
+            ], cwd=cwd)
 
 
 def to_patch(cfg):
@@ -51,9 +51,9 @@ def to_patch(cfg):
 @hydra.main(config_path="config", config_name="config")
 def main(cfg):
     print("Start Downloading WSIs from TCGA-Portal")
-    download_wsi()
+    download_wsi(cfg)
     print("Start Patching WSIs")
-    to_patch()
+    to_patch(cfg)
 
 
 if __name__ == "__main__":

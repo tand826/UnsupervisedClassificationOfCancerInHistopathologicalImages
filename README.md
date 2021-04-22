@@ -8,7 +8,7 @@
 - python3.8.6
 - CUDA
 - gdc-client -> [URL](https://gdc.cancer.gov/access-data/gdc-data-transfer-tool#:~:text=Binary%20Distributions)
-  - バイナリを patch.py と同じディレクトリに置くか、パスを通してください
+  - バイナリを patch.py と同じディレクトリに置いてください
 - wsiprocess -> [URL](https://github.com/tand826/wsiprocess#installation)
 - requirements
   ```
